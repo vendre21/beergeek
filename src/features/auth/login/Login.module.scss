@@ -1,0 +1,46 @@
+@import "assets/scss/_variables";
+
+.login_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  font-size: 1.4rem;
+  color: $primary-color;
+
+  h3,
+  input {
+    margin-bottom: 25px;
+  }
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 12px 15px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .login_btn {
+    margin-top: 5px;
+    padding: 10px 15px;
+    background-color: $primary-btn-color;
+    cursor: pointer;
+    color: white;
+    transition: all 0.5s;
+    border: 0;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .login_error {
+    font-size: 1rem;
+    margin-top: 15px;
+    color: red;
+  }
+}
