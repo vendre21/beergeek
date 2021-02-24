@@ -79,7 +79,7 @@
   display: flex;
   flex-flow: column;
   justify-content: center;
-  width: $card-width;
+  max-width: $card-width;
   max-height: 200px;
   text-align: center;
   border-radius: 50%;
