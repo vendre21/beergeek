@@ -26,7 +26,7 @@ export const Router: FC = () => {
         <Route exact path={["/", "/beers", "/beergeek"]}>
           <Beers />
         </Route>
-        <Route exact path="/beers/:id">
+        <Route exact path={["/beers/:id", "/beergeek/beers/:id"]}>
           <BeerDetails />
         </Route>
         <Route
