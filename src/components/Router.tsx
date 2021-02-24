@@ -7,6 +7,7 @@ import { BeerDetails } from 'features/beers/detail/BeerDetails'
 import { Beers } from 'features/beers/list/Beers'
 
 import styles from './Layout.module.scss'
+import { NotFound } from './NotFound'
 
 
 export const Router: FC = () => {
@@ -29,14 +30,9 @@ export const Router: FC = () => {
         <Route exact path={["/beers/:id", "/beergeek/beers/:id"]}>
           <BeerDetails />
         </Route>
-        <Route
-          render={() => (
-            <div className={styles.not_found}>
-              <p>404</p>
-              <p>No no no!</p>
-            </div>
-          )}
-        />
+        <Route>
+          <NotFound />
+        </Route>
       </Switch>
     </div>
   );
