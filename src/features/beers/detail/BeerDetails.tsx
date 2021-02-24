@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import LazyLoad from 'react-lazyload'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 
@@ -29,9 +28,7 @@ export const BeerDetails = () => {
 
   return beer ? (
     <div className={styles.beer_detail}>
-      <LazyLoad height={400}>
-        <img src={beer.image_url} alt={beer.name} />
-      </LazyLoad>
+      <img src={beer.image_url} alt={beer.name} />
 
       <div className={styles.beer_detail_info}>
         <h3>
