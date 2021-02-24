@@ -51,6 +51,7 @@ const beersSlice = createSlice({
     ) {
       state.paging.hasMore = hasMore;
       state.beers = beers;
+      state.beer = undefined;
       state.hasQueryParamsChanged = false;
     },
     fetchBeerSuccess(state, { payload: { beer } }: PayloadAction<BeerDetails>) {
