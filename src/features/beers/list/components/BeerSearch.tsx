@@ -11,6 +11,7 @@ import styles from '../Beers.module.scss'
 
 export const BeerSearch: FC = () => {
   const dispatch = useDispatch();
+
   const filters = useSelector(selectBeerFilters);
   const paging = useSelector(selectBeersPaging);
   const { name, minAlcohol, maxAlcohol } = filters;
@@ -38,7 +39,7 @@ export const BeerSearch: FC = () => {
       <input
         name="minAlcohol"
         type="number"
-        placeholder="min"
+        placeholder="min alc"
         min="0"
         max="100"
         value={minAlcohol ?? ""}
@@ -48,7 +49,7 @@ export const BeerSearch: FC = () => {
       <input
         name="maxAlcohol"
         type="number"
-        placeholder="max"
+        placeholder="max alc"
         min="0"
         max="100"
         value={maxAlcohol ?? ""}

@@ -2,23 +2,23 @@ import { createSelector } from '@reduxjs/toolkit'
 
 import { RootState } from 'app/store'
 
-import { ApiRequestError, ApiRequestLoading, ApiRequestsState } from './apiRequestsSlice'
+import { ApiRequestError, ApiRequestsStates, ApiRequestState } from './apiRequestsSlice'
 
 
-const selectApiRequests = (state: RootState): ApiRequestsState =>
+const selectApiRequests = (state: RootState): ApiRequestsStates =>
   state.apiRequests;
 
 export const selectErrors = createSelector<
   RootState,
-  ApiRequestsState,
+  ApiRequestsStates,
   ApiRequestError[]
 >(selectApiRequests, ({ errors }) => errors);
 
-export const selectLoadings = createSelector<
+export const selectApiRequestsState = createSelector<
   RootState,
-  ApiRequestsState,
-  ApiRequestLoading[]
->(selectApiRequests, ({ loadingStates }) => loadingStates);
+  ApiRequestsStates,
+  ApiRequestState[]
+>(selectApiRequests, ({ requestsStates: loadingStates }) => loadingStates);
 
 const getByActionName = (_: any, name: string) => name;
 
@@ -30,8 +30,8 @@ export const selectErrorByActionName = createSelector(
   }
 );
 
-export const selectLoadingByActionName = createSelector(
-  selectLoadings,
+export const selectApiRequestStateByActionName = createSelector(
+  selectApiRequestsState,
   getByActionName,
   (loadingStates, name) => {
     return loadingStates.find((x) => x.action === name);

@@ -70,7 +70,7 @@
 .beer_list {
   display: grid;
   grid-template-columns: repeat(3, $card-width);
-  grid-row-gap: 2rem;
+  grid-row-gap: 1rem;
   grid-column-gap: 4rem;
   margin: 0 auto;
 }
@@ -95,7 +95,8 @@
   overflow: hidden;
 
   img {
-    height: 80px;
+    padding-top: 8px;
+    height: 92px;
     object-fit: scale-down;
     max-width: 100%;
   }
@@ -105,13 +106,14 @@
 
     .beer_title {
       padding-top: 10px;
-      font-size: 0.9rem;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
     }
 
     .beer_abv {
       padding-top: 15px;
-      font-size: 1.3rem;
-      letter-spacing: 3px;
+      font-size: 1.2rem;
+      // letter-spacing: 3px;
       text-transform: uppercase;
     }
 

@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 
-import { useLoadingState } from 'common/hooks/useLoadingFor'
+import { useRequestState } from 'common/hooks/useRequestState'
 import { Loading } from 'components/Loading'
 
-import { fetchBeer, selectBeer } from 'features/beers/beersSlice'
+import { fetchBeer, resetBeer, selectBeer } from 'features/beers/beersSlice'
 
 import styles from './BeerDetail.module.scss'
 
@@ -15,13 +15,17 @@ export const BeerDetails = () => {
 
   let { id } = useParams<{ id: string }>();
 
-  const isLoading = useLoadingState(fetchBeer.name);
+  const isLoading = useRequestState(fetchBeer.name);
   // const { hasError, error } = useHasError(fetchBeer.name);
 
   const { beer } = useSelector(selectBeer);
 
   useEffect(() => {
     dispatch(fetchBeer(+id));
+
+    return () => {
+      dispatch(resetBeer());
+    };
   }, [dispatch, id]);
 
   if (isLoading) return <Loading />;

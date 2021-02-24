@@ -7,19 +7,19 @@ export interface ApiRequestError {
   error: string;
 }
 
-export interface ApiRequestLoading {
+export interface ApiRequestState {
   action: string;
   loading: boolean;
 }
 
-export interface ApiRequestsState {
+export interface ApiRequestsStates {
   errors: ApiRequestError[];
-  loadingStates: ApiRequestLoading[];
+  requestsStates: ApiRequestState[];
 }
 
-const initialState: ApiRequestsState = {
+const initialState: ApiRequestsStates = {
   errors: [],
-  loadingStates: [],
+  requestsStates: [],
 };
 
 const apiRequestsSlice = createSlice({
@@ -31,10 +31,10 @@ const apiRequestsSlice = createSlice({
       { payload }: PayloadAction<{ actionName: string; actionState: boolean }>
     ) {
       const { actionName, actionState } = payload;
-      const exists = state.loadingStates.find((x) => x.action === actionName);
+      const exists = state.requestsStates.find((x) => x.action === actionName);
       exists
         ? (exists.loading = actionState)
-        : state.loadingStates.push({
+        : state.requestsStates.push({
             action: actionName,
             loading: actionState,
           });

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { history } from 'app/store'
 import { useHasError } from 'common/hooks/useHasError'
-import { useLoadingState } from 'common/hooks/useLoadingFor'
+import { useRequestState } from 'common/hooks/useRequestState'
 import { Loading } from 'components/Loading'
 
 import {
@@ -20,9 +20,9 @@ export const BeerList: FC = () => {
   const dispatch = useDispatch();
 
   const { hasError } = useHasError(fetchBeers.name);
-  const isLoading = useLoadingState(fetchBeers.name);
+  const isLoading = useRequestState(fetchBeers.name);
 
-  const hasAnyChanged = useSelector(selectHasAnyChange);
+  const hasAnyChange = useSelector(selectHasAnyChange);
   const filters = useSelector(selectBeerFilters);
   const paging = useSelector(selectBeersPaging);
   const { beers } = useSelector(selectBeers);
@@ -31,18 +31,18 @@ export const BeerList: FC = () => {
   const { pageNumber } = paging;
 
   useEffect(() => {
-    if (!hasAnyChanged || hasError) return;
+    if (!hasAnyChange || hasError) return;
 
     const { cancel, token } = axios.CancelToken.source();
 
     const timeOutId = setTimeout(() => dispatch(fetchBeers(token)), 600);
     return () => {
-      cancel("Cancel prev. request");
+      cancel();
       clearTimeout(timeOutId);
     };
   }, [
     dispatch,
-    hasAnyChanged,
+    hasAnyChange,
     hasError,
     name,
     minAlcohol,

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import { RootState } from 'app/store'
-import { selectErrorByActionName } from 'common/apiRequests/apiRequestSelectors'
+import { selectErrorByActionName } from 'common/apiRequests/apiRequestsSelectors'
 
 
 export const useHasError = (

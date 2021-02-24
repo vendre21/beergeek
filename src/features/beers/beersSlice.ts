@@ -51,12 +51,14 @@ const beersSlice = createSlice({
     ) {
       state.paging.hasMore = hasMore;
       state.beers = beers;
-      state.beer = undefined;
       state.hasQueryParamsChanged = false;
     },
     fetchBeerSuccess(state, { payload: { beer } }: PayloadAction<BeerDetails>) {
       state.beer = beer;
       state.hasQueryParamsChanged = false;
+    },
+    resetBeer(state) {
+      state.beer = undefined;
     },
     // filters
     setNameFilter(state, { payload }: PayloadAction<string>) {
@@ -73,14 +75,6 @@ const beersSlice = createSlice({
     },
     setMaxAlcFilter(state, { payload }: PayloadAction<number>) {
       state.filters.maxAlcohol = payload;
-      state.paging.pageNumber = 1;
-      state.beers = [];
-      state.hasQueryParamsChanged = true;
-    },
-    clearFilters(state) {
-      state.filters.name = undefined;
-      state.filters.minAlcohol = undefined;
-      state.filters.maxAlcohol = undefined;
       state.paging.pageNumber = 1;
       state.beers = [];
       state.hasQueryParamsChanged = true;
@@ -104,7 +98,8 @@ export const {
   setMinAlcFilter,
   setMaxAlcFilter,
   setNextPage,
-  clearFilters,
+  resetBeers: clearFilters,
+  resetBeer,
   resetBeers,
 } = beersSlice.actions;
 
