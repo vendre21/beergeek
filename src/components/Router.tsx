@@ -25,10 +25,10 @@ export const Router: FC = () => {
   return (
     <div className={styles.page_container}>
       <Switch>
-        <Route exact path={["/", "/beers"]}>
+        <Route exact path={["/", "/beers", "/beergeek"]}>
           <Beers />
         </Route>
-        <Route exact path="/beers/:id">
+        <Route exact path={["/beers/:id", "/beergeek/beers/:id"]}>
           <BeerDetails />
         </Route>
         <Route>
