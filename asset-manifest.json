@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/beers/static/css/main.89390a30.chunk.css",
-    "main.js": "/beers/static/js/main.ecf03df2.chunk.js",
-    "main.js.map": "/beers/static/js/main.ecf03df2.chunk.js.map",
+    "main.js": "/beers/static/js/main.c6fd8353.chunk.js",
+    "main.js.map": "/beers/static/js/main.c6fd8353.chunk.js.map",
     "runtime-main.js": "/beers/static/js/runtime-main.44c5be93.js",
     "runtime-main.js.map": "/beers/static/js/runtime-main.44c5be93.js.map",
     "static/js/2.ef7a2443.chunk.js": "/beers/static/js/2.ef7a2443.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.44c5be93.js",
     "static/js/2.ef7a2443.chunk.js",
     "static/css/main.89390a30.chunk.css",
-    "static/js/main.ecf03df2.chunk.js"
+    "static/js/main.c6fd8353.chunk.js"
   ]
 }
