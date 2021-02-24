@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/beergeek/static/css/main.6420fe32.chunk.css",
-    "main.js": "/beergeek/static/js/main.473010c7.chunk.js",
-    "main.js.map": "/beergeek/static/js/main.473010c7.chunk.js.map",
+    "main.js": "/beergeek/static/js/main.bb6d5f0e.chunk.js",
+    "main.js.map": "/beergeek/static/js/main.bb6d5f0e.chunk.js.map",
     "runtime-main.js": "/beergeek/static/js/runtime-main.41154794.js",
     "runtime-main.js.map": "/beergeek/static/js/runtime-main.41154794.js.map",
-    "static/js/2.faf9456b.chunk.js": "/beergeek/static/js/2.faf9456b.chunk.js",
-    "static/js/2.faf9456b.chunk.js.map": "/beergeek/static/js/2.faf9456b.chunk.js.map",
+    "static/js/2.1dfe5c97.chunk.js": "/beergeek/static/js/2.1dfe5c97.chunk.js",
+    "static/js/2.1dfe5c97.chunk.js.map": "/beergeek/static/js/2.1dfe5c97.chunk.js.map",
     "index.html": "/beergeek/index.html",
     "static/css/main.6420fe32.chunk.css.map": "/beergeek/static/css/main.6420fe32.chunk.css.map",
-    "static/js/2.faf9456b.chunk.js.LICENSE.txt": "/beergeek/static/js/2.faf9456b.chunk.js.LICENSE.txt",
+    "static/js/2.1dfe5c97.chunk.js.LICENSE.txt": "/beergeek/static/js/2.1dfe5c97.chunk.js.LICENSE.txt",
     "static/media/beer.1a429638.svg": "/beergeek/static/media/beer.1a429638.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.41154794.js",
-    "static/js/2.faf9456b.chunk.js",
+    "static/js/2.1dfe5c97.chunk.js",
     "static/css/main.6420fe32.chunk.css",
-    "static/js/main.473010c7.chunk.js"
+    "static/js/main.bb6d5f0e.chunk.js"
   ]
 }
