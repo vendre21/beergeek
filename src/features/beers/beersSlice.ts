@@ -29,14 +29,14 @@ export interface Paging {
 
 type BeersState = Beers &
   BeerDetails & { filters: BeerFilters } & { paging: Paging } & {
-    hasQueryParamsChanged: boolean;
+    isQueryParamsChanged: boolean;
   };
 
 const initialState: BeersState = {
   beers: [],
   filters: {},
   paging: { pageSize: 12, pageNumber: 1, hasMore: true },
-  hasQueryParamsChanged: true,
+  isQueryParamsChanged: true,
 };
 
 const beersSlice = createSlice({
@@ -51,11 +51,11 @@ const beersSlice = createSlice({
     ) {
       state.paging.hasMore = hasMore;
       state.beers = beers;
-      state.hasQueryParamsChanged = false;
+      state.isQueryParamsChanged = false;
     },
     fetchBeerSuccess(state, { payload: { beer } }: PayloadAction<BeerDetails>) {
       state.beer = beer;
-      state.hasQueryParamsChanged = false;
+      state.isQueryParamsChanged = false;
     },
     resetBeer(state) {
       state.beer = undefined;
@@ -65,25 +65,25 @@ const beersSlice = createSlice({
       state.filters.name = payload;
       state.paging.pageNumber = 1;
       state.beers = [];
-      state.hasQueryParamsChanged = true;
+      state.isQueryParamsChanged = true;
     },
     setMinAlcFilter(state, { payload }: PayloadAction<number>) {
       state.filters.minAlcohol = payload;
       state.paging.pageNumber = 1;
       state.beers = [];
-      state.hasQueryParamsChanged = true;
+      state.isQueryParamsChanged = true;
     },
     setMaxAlcFilter(state, { payload }: PayloadAction<number>) {
       state.filters.maxAlcohol = payload;
       state.paging.pageNumber = 1;
       state.beers = [];
-      state.hasQueryParamsChanged = true;
+      state.isQueryParamsChanged = true;
     },
     // paging
     setNextPage(state, { payload }: PayloadAction<number>) {
       state.paging.pageNumber = payload;
       state.beers = [];
-      state.hasQueryParamsChanged = true;
+      state.isQueryParamsChanged = true;
     },
     // reset
     resetBeers: () => initialState,
@@ -107,7 +107,7 @@ export const {
 export const selectBeers = (state: RootState): Beers => state.beers;
 export const selectBeer = (state: RootState): BeerDetails => state.beers;
 export const selectHasAnyChange = (state: RootState): boolean =>
-  state.beers.hasQueryParamsChanged;
+  state.beers.isQueryParamsChanged;
 export const selectBeerFilteringUtils = (
   state: RootState
 ): BeerFilters & Paging => {
@@ -134,6 +134,7 @@ export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
     );
 
     const newBeers = await getBeers(query, cancelToken);
+
     const hasMore = newBeers.length < pageSize ? false : true;
 
     dispatch(
@@ -143,7 +144,7 @@ export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
       })
     );
 
-    newBeers.length === 0 && toastWarning("Sorry bro, nothing to show!");
+    newBeers.length === 0 && toastWarning("Sorry bro, no beer for you!");
   };
 
 export const fetchBeer = (id: number): AppThunk =>
