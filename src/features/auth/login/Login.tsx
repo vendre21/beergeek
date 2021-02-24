@@ -18,7 +18,7 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, errors } = useForm<LoginForm>();
-  const { error } = useHasError(login.name);
+  const { hasError, error } = useHasError(login.name);
 
   const onSubmit = async ({ email, password }: LoginForm) => {
     dispatch(login(email, password));
@@ -58,7 +58,7 @@ export const Login = () => {
         </div>
 
         <div className={styles.login_error}>
-          <p>{error}</p>
+          <p>{hasError && error}</p>
           <p>{errors.email && errors.email.message}</p>
           <p>{errors.password && "Password is required."}</p>
         </div>
