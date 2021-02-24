@@ -8,7 +8,7 @@ import { useRequestState } from 'common/hooks/useRequestState'
 import { Loading } from 'components/Loading'
 
 import {
-    fetchBeers, selectBeerFilters, selectBeers, selectBeersPaging, selectHasAnyChange
+    fetchBeers, selectBeerFilteringUtils, selectBeers, selectHasAnyChange
 } from 'features/beers/beersSlice'
 
 import { BeerInfo } from './BeerInfo'
@@ -23,12 +23,10 @@ export const BeerList: FC = () => {
   const isLoading = useRequestState(fetchBeers.name);
 
   const hasAnyChange = useSelector(selectHasAnyChange);
-  const filters = useSelector(selectBeerFilters);
-  const paging = useSelector(selectBeersPaging);
+  const { name, minAlcohol, maxAlcohol, pageNumber } = useSelector(
+    selectBeerFilteringUtils
+  );
   const { beers } = useSelector(selectBeers);
-
-  const { name, minAlcohol, maxAlcohol } = filters;
-  const { pageNumber } = paging;
 
   useEffect(() => {
     if (!hasAnyChange || hasError) return;

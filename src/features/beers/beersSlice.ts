@@ -108,10 +108,11 @@ export const selectBeers = (state: RootState): Beers => state.beers;
 export const selectBeer = (state: RootState): BeerDetails => state.beers;
 export const selectHasAnyChange = (state: RootState): boolean =>
   state.beers.hasQueryParamsChanged;
-export const selectBeersPaging = (state: RootState): Paging =>
-  state.beers.paging;
-export const selectBeerFilters = (state: RootState): BeerFilters =>
-  state.beers.filters;
+export const selectBeerFilteringUtils = (
+  state: RootState
+): BeerFilters & Paging => {
+  return { ...state.beers.filters, ...state.beers.paging };
+};
 
 // reducer
 export default beersSlice.reducer;
