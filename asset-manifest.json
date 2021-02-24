@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/beergeek/static/css/main.89390a30.chunk.css",
-    "main.js": "/beergeek/static/js/main.b826555e.chunk.js",
-    "main.js.map": "/beergeek/static/js/main.b826555e.chunk.js.map",
+    "main.js": "/beergeek/static/js/main.965271f9.chunk.js",
+    "main.js.map": "/beergeek/static/js/main.965271f9.chunk.js.map",
     "runtime-main.js": "/beergeek/static/js/runtime-main.41154794.js",
     "runtime-main.js.map": "/beergeek/static/js/runtime-main.41154794.js.map",
     "static/js/2.ef7a2443.chunk.js": "/beergeek/static/js/2.ef7a2443.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.41154794.js",
     "static/js/2.ef7a2443.chunk.js",
     "static/css/main.89390a30.chunk.css",
-    "static/js/main.b826555e.chunk.js"
+    "static/js/main.965271f9.chunk.js"
   ]
 }
