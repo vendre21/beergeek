@@ -18,7 +18,7 @@ export const BeerSearch: FC = () => {
 
   return (
     <div className={styles.search_form}>
-      {/* <div className={styles.search_paging}>Page: {pageNumber}</div> */}
+      <div className={styles.search_paging}>Page: {pageNumber}</div>
 
       <button
         disabled={pageNumber === 1}
