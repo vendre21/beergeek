@@ -1,6 +1,6 @@
-import { toastError } from 'common/helpers/toastHelper'
-
 import axios, { CancelToken } from 'axios'
+
+import { toastError } from 'common/helpers/toastHelper'
 
 import { axiosErrorHandlingMiddleware } from './middleware/errorHandlingMiddleware'
 
@@ -37,10 +37,10 @@ export const getBeers = async (
   const response = await beersApi.get<Beer[]>(`/beers?${query}`, {
     cancelToken,
   });
-  return response.data;
+  return response?.data ?? [];
 };
 
 export const getBeer = async (id: number): Promise<Beer | undefined> => {
   const response = await beersApi.get<Beer[]>(`/beers/${id}`);
-  return response.data?.length === 1 ? response.data[0] : undefined;
+  return response?.data?.length === 1 ? response.data[0] : undefined;
 };

@@ -6,6 +6,8 @@ import { AppThunk, RootState } from 'app/store'
 import { addError, removeError } from 'common/apiRequests/apiRequestsSlice'
 import { getToken, setToken } from 'common/helpers/sessionHelpers'
 
+import { resetBeers } from 'features/beers/beersSlice'
+
 
 export interface AuthState {
   userName?: string;
@@ -69,6 +71,8 @@ export const login = (email: string, password: string): AppThunk =>
 export const logout = (): AppThunk =>
   async function logout(dispatch) {
     dispatch(logoutSuccess());
+    // cleanup
+    dispatch(resetBeers());
     dispatch(
       removeError({
         actionName: login.name,

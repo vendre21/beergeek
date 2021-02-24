@@ -28,17 +28,20 @@ export interface Paging {
 }
 
 type BeersState = Beers &
-  BeerDetails & { filters: BeerFilters } & { paging: Paging };
+  BeerDetails & { filters: BeerFilters } & { paging: Paging } & {
+    hasQueryParamsChanged: boolean;
+  };
 
-const beersInitialState: BeersState = {
+const initialState: BeersState = {
   beers: [],
   filters: {},
   paging: { pageSize: 12, pageNumber: 1, hasMore: true },
+  hasQueryParamsChanged: true,
 };
 
 const beersSlice = createSlice({
   name: "beersSlice",
-  initialState: beersInitialState,
+  initialState: initialState,
   reducers: {
     fetchBeersSuccess(
       state,
@@ -48,34 +51,47 @@ const beersSlice = createSlice({
     ) {
       state.paging.hasMore = hasMore;
       state.beers = beers;
+      state.hasQueryParamsChanged = false;
     },
     fetchBeerSuccess(state, { payload: { beer } }: PayloadAction<BeerDetails>) {
       state.beer = beer;
-      state.beers = [];
+      state.hasQueryParamsChanged = false;
     },
     // filters
     setNameFilter(state, { payload }: PayloadAction<string>) {
       state.filters.name = payload;
       state.paging.pageNumber = 1;
+      state.beers = [];
+      state.hasQueryParamsChanged = true;
     },
     setMinAlcFilter(state, { payload }: PayloadAction<number>) {
       state.filters.minAlcohol = payload;
       state.paging.pageNumber = 1;
+      state.beers = [];
+      state.hasQueryParamsChanged = true;
     },
     setMaxAlcFilter(state, { payload }: PayloadAction<number>) {
       state.filters.maxAlcohol = payload;
       state.paging.pageNumber = 1;
+      state.beers = [];
+      state.hasQueryParamsChanged = true;
     },
     clearFilters(state) {
       state.filters.name = undefined;
       state.filters.minAlcohol = undefined;
       state.filters.maxAlcohol = undefined;
       state.paging.pageNumber = 1;
+      state.beers = [];
+      state.hasQueryParamsChanged = true;
     },
     // paging
     setNextPage(state, { payload }: PayloadAction<number>) {
       state.paging.pageNumber = payload;
+      state.beers = [];
+      state.hasQueryParamsChanged = true;
     },
+    // reset
+    resetBeers: () => initialState,
   },
 });
 
@@ -88,11 +104,14 @@ export const {
   setMaxAlcFilter,
   setNextPage,
   clearFilters,
+  resetBeers,
 } = beersSlice.actions;
 
 // selectors
 export const selectBeers = (state: RootState): Beers => state.beers;
 export const selectBeer = (state: RootState): BeerDetails => state.beers;
+export const selectHasAnyChange = (state: RootState): boolean =>
+  state.beers.hasQueryParamsChanged;
 export const selectBeersPaging = (state: RootState): Paging =>
   state.beers.paging;
 export const selectBeerFilters = (state: RootState): BeerFilters =>
@@ -118,7 +137,7 @@ export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
     );
 
     const newBeers = await getBeers(query, cancelToken);
-    const hasMore = newBeers.length >= pageSize ? true : false;
+    const hasMore = newBeers.length < pageSize ? false : true;
 
     dispatch(
       fetchBeersSuccess({

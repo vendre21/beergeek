@@ -1,29 +1,20 @@
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
-    clearFilters, setMaxAlcFilter, setMinAlcFilter, setNameFilter, setNextPage
+    clearFilters, selectBeerFilters, selectBeersPaging, setMaxAlcFilter, setMinAlcFilter,
+    setNameFilter, setNextPage
 } from 'features/beers/beersSlice'
 
 import styles from '../Beers.module.scss'
 
 
-interface SearchProps {
-  name?: string;
-  minAlcohol?: number;
-  maxAlcohol?: number;
-  hasMore: boolean;
-  pageNumber: number;
-}
-
-export const BeerSearch: FC<SearchProps> = ({
-  name,
-  minAlcohol,
-  maxAlcohol,
-  hasMore,
-  pageNumber,
-}) => {
+export const BeerSearch: FC = () => {
   const dispatch = useDispatch();
+  const filters = useSelector(selectBeerFilters);
+  const paging = useSelector(selectBeersPaging);
+  const { name, minAlcohol, maxAlcohol } = filters;
+  const { hasMore, pageNumber } = paging;
 
   return (
     <div className={styles.search_form}>
