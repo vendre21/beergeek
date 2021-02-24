@@ -11,8 +11,9 @@ import {
     fetchBeers, selectBeerFilters, selectBeers, selectBeersPaging, selectHasAnyChange
 } from 'features/beers/beersSlice'
 
-import styles from '../Beers.module.scss'
 import { BeerInfo } from './BeerInfo'
+
+import styles from '../Beers.module.scss'
 
 
 export const BeerList: FC = () => {

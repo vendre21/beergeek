@@ -1,7 +1,7 @@
 import { Middleware } from '@reduxjs/toolkit'
 
+import { addError, setLoading } from 'common/apiRequests/apiRequestsSlice'
 import { toastError } from 'common/helpers/toastHelper'
-import { addError, setLoading } from '../../common/apiRequests/apiRequestsSlice'
 
 
 export const apiRequestInterceptorMiddleware: Middleware = ({

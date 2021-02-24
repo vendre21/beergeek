@@ -1,13 +1,14 @@
 import React, { FC } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
+import { NotFound } from 'components/NotFound'
+
 import { Login } from 'features/auth/login/Login'
 import { useAuthentication } from 'features/auth/useAuthentication'
 import { BeerDetails } from 'features/beers/detail/BeerDetails'
 import { Beers } from 'features/beers/list/Beers'
 
 import styles from './Layout.module.scss'
-import { NotFound } from './NotFound'
 
 
 export const Router: FC = () => {
@@ -24,10 +25,10 @@ export const Router: FC = () => {
   return (
     <div className={styles.page_container}>
       <Switch>
-        <Route exact path={["/", "/beers", "/beergeek"]}>
+        <Route exact path={["/", "/beers"]}>
           <Beers />
         </Route>
-        <Route exact path={["/beers/:id", "/beergeek/beers/:id"]}>
+        <Route exact path="/beers/:id">
           <BeerDetails />
         </Route>
         <Route>
