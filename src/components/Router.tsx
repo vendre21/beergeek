@@ -23,16 +23,20 @@ export const Router: FC = () => {
   return (
     <div className={styles.page_container}>
       <Switch>
-        <Route exact path="/">
-          <Beers />
-        </Route>
-        <Route exact path="/beers">
+        <Route exact path={["/", "/beers", "/beergeek"]}>
           <Beers />
         </Route>
         <Route exact path="/beers/:id">
           <BeerDetails />
         </Route>
-        <Route render={() => <div>No no no! 404!</div>} />
+        <Route
+          render={() => (
+            <div className={styles.not_found}>
+              <p>404</p>
+              <p>No no no!</p>
+            </div>
+          )}
+        />
       </Switch>
     </div>
   );

@@ -24,6 +24,8 @@ export const Login = () => {
     dispatch(login(email, password));
   };
 
+  const isRequired = (value: string) => !!value || "Email is required.";
+
   return (
     <div className={styles.login_container}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +34,9 @@ export const Login = () => {
         <input
           name="email"
           ref={register({
-            required: "Required",
+            validate: {
+              isRequired: isRequired,
+            },
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               message: "Invalid email address.",

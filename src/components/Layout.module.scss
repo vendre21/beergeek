@@ -103,3 +103,12 @@
   align-items: center;
   z-index: 100;
 }
+
+.not_found {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
