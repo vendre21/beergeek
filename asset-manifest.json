@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/beers/static/css/main.89390a30.chunk.css",
-    "main.js": "/beers/static/js/main.c6fd8353.chunk.js",
-    "main.js.map": "/beers/static/js/main.c6fd8353.chunk.js.map",
-    "runtime-main.js": "/beers/static/js/runtime-main.44c5be93.js",
-    "runtime-main.js.map": "/beers/static/js/runtime-main.44c5be93.js.map",
-    "static/js/2.ef7a2443.chunk.js": "/beers/static/js/2.ef7a2443.chunk.js",
-    "static/js/2.ef7a2443.chunk.js.map": "/beers/static/js/2.ef7a2443.chunk.js.map",
-    "index.html": "/beers/index.html",
-    "static/css/main.89390a30.chunk.css.map": "/beers/static/css/main.89390a30.chunk.css.map",
-    "static/js/2.ef7a2443.chunk.js.LICENSE.txt": "/beers/static/js/2.ef7a2443.chunk.js.LICENSE.txt",
-    "static/media/beer.1a429638.svg": "/beers/static/media/beer.1a429638.svg"
+    "main.css": "/beergeek/static/css/main.89390a30.chunk.css",
+    "main.js": "/beergeek/static/js/main.c6fd8353.chunk.js",
+    "main.js.map": "/beergeek/static/js/main.c6fd8353.chunk.js.map",
+    "runtime-main.js": "/beergeek/static/js/runtime-main.41154794.js",
+    "runtime-main.js.map": "/beergeek/static/js/runtime-main.41154794.js.map",
+    "static/js/2.ef7a2443.chunk.js": "/beergeek/static/js/2.ef7a2443.chunk.js",
+    "static/js/2.ef7a2443.chunk.js.map": "/beergeek/static/js/2.ef7a2443.chunk.js.map",
+    "index.html": "/beergeek/index.html",
+    "static/css/main.89390a30.chunk.css.map": "/beergeek/static/css/main.89390a30.chunk.css.map",
+    "static/js/2.ef7a2443.chunk.js.LICENSE.txt": "/beergeek/static/js/2.ef7a2443.chunk.js.LICENSE.txt",
+    "static/media/beer.1a429638.svg": "/beergeek/static/media/beer.1a429638.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.44c5be93.js",
+    "static/js/runtime-main.41154794.js",
     "static/js/2.ef7a2443.chunk.js",
     "static/css/main.89390a30.chunk.css",
     "static/js/main.c6fd8353.chunk.js"
