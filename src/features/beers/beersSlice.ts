@@ -144,7 +144,9 @@ export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
       })
     );
 
-    newBeers.length === 0 && toastWarning("Sorry bro, no beer for you!");
+    !hasMore &&
+      newBeers.length === 0 &&
+      toastWarning("Sorry bro, no beer for you!");
   };
 
 export const fetchBeer = (id: number): AppThunk =>
