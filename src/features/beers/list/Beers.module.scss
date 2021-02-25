@@ -94,11 +94,27 @@
   cursor: pointer;
   overflow: hidden;
 
+  &:hover {
+    animation: bouncedScale 1.3s linear infinite;
+  }
+
   img {
     padding-top: 8px;
     height: 92px;
     object-fit: scale-down;
     max-width: 100%;
+  }
+
+  @keyframes bouncedScale {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.06);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   .beer_info {
