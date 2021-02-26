@@ -34,43 +34,39 @@ const beersSlice = createSlice({
         payload: { beers, hasMore },
       }: PayloadAction<{ beers: Beer[]; hasMore: boolean }>
     ) {
+      state.isQueryParamsChanged = false;
       state.paging.hasMore = hasMore;
       state.beers = beers;
-      state.isQueryParamsChanged = false;
     },
     fetchBeerSuccess(state, { payload: { beer } }: PayloadAction<BeerDetails>) {
-      state.beer = beer;
       state.isQueryParamsChanged = false;
-    },
-    resetBeer(state) {
-      state.beer = undefined;
+      state.beer = beer;
     },
     // filters
     setNameFilter(state, { payload }: PayloadAction<string>) {
-      state.filters.name = payload;
-      state.paging.pageNumber = 1;
-      state.beers = [];
       state.isQueryParamsChanged = true;
+      state.paging.pageNumber = 1;
+      state.filters.name = payload;
     },
     setMinAlcFilter(state, { payload }: PayloadAction<number>) {
-      state.filters.minAlcohol = payload;
-      state.paging.pageNumber = 1;
-      state.beers = [];
       state.isQueryParamsChanged = true;
+      state.paging.pageNumber = 1;
+      state.filters.minAlcohol = payload;
     },
     setMaxAlcFilter(state, { payload }: PayloadAction<number>) {
-      state.filters.maxAlcohol = payload;
-      state.paging.pageNumber = 1;
-      state.beers = [];
       state.isQueryParamsChanged = true;
+      state.paging.pageNumber = 1;
+      state.filters.maxAlcohol = payload;
     },
     // paging
     setNextPage(state, { payload }: PayloadAction<number>) {
-      state.paging.pageNumber = payload;
-      state.beers = [];
       state.isQueryParamsChanged = true;
+      state.paging.pageNumber = payload;
     },
     // reset
+    resetBeer(state) {
+      state.beer = undefined;
+    },
     resetBeers: () => initialState,
   },
 });
