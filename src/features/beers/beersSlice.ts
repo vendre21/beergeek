@@ -4,7 +4,6 @@ import { CancelToken } from 'axios'
 import { Beer, BeerFilters, Beers, getBeer, getBeers } from 'api/beersApi'
 
 import { AppThunk, RootState } from 'app/store'
-import { toastWarning } from 'common/helpers/toastHelper'
 import { Paging } from 'common/models'
 
 
@@ -108,10 +107,6 @@ export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
     const hasMore = beers.length < paging.pageSize ? false : true;
 
     dispatch(fetchBeersSuccess({ beers, hasMore }));
-
-    !hasMore &&
-      beers.length === 0 &&
-      toastWarning("Sorry bro, no beer for you!");
   };
 
 export const fetchBeer = (id: number): AppThunk =>

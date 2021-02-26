@@ -4,7 +4,7 @@ import { toastError } from 'common/helpers/toastHelper'
 
 
 export const axiosErrorHandlingMiddleware = (error: AxiosError) => {
-  if (axios.isCancel(error)) return;
+  if (axios.isCancel(error)) throw error;
 
   // console.log(error);
   toastError(error.message);

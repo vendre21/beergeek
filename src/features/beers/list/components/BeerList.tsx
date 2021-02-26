@@ -3,6 +3,7 @@ import React, { FC, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { history } from 'app/store'
+import { toastHideAll, toastWarning } from 'common/helpers/toastHelper'
 import { useHasError } from 'common/hooks/useHasError'
 import { useRequestState } from 'common/hooks/useRequestState'
 import { Loading } from 'components/Loading'
@@ -22,14 +23,14 @@ export const BeerList: FC = () => {
   const { hasError } = useHasError(fetchBeers.name);
   const isLoading = useRequestState(fetchBeers.name);
 
-  const hasAnyChange = useSelector(selectHasAnyChange);
-  const { name, minAlcohol, maxAlcohol, pageNumber } = useSelector(
+  const hasAnyFilterChange = useSelector(selectHasAnyChange);
+  const { name, minAlcohol, maxAlcohol, pageNumber, hasMore } = useSelector(
     selectBeerFilteringUtils
   );
   const { beers } = useSelector(selectBeers);
 
   useEffect(() => {
-    if (!hasAnyChange || hasError) return;
+    if (!hasAnyFilterChange || hasError) return;
 
     const { cancel, token } = axios.CancelToken.source();
 
@@ -40,13 +41,18 @@ export const BeerList: FC = () => {
     };
   }, [
     dispatch,
-    hasAnyChange,
+    hasAnyFilterChange,
     hasError,
     name,
     minAlcohol,
     maxAlcohol,
     pageNumber,
   ]);
+
+  useEffect(() => {
+    toastHideAll();
+    !hasMore && toastWarning("Sorry bro, no beer for you!");
+  }, [hasMore, hasAnyFilterChange]);
 
   const handleClick = useCallback((id: number) => {
     history.push(`beers/${id}`);

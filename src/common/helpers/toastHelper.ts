@@ -12,3 +12,7 @@ export const toastWarning = (message: string) => {
 export const toastSuccess = (message: string) => {
   toast.success(message);
 };
+
+export const toastHideAll = () => {
+  toast.hideAll();
+};
