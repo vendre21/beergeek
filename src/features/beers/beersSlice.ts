@@ -1,30 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CancelToken } from 'axios'
 
-import { Beer, getBeer, getBeers } from 'api/beersApi'
+import { Beer, BeerFilters, Beers, getBeer, getBeers } from 'api/beersApi'
 
 import { AppThunk, RootState } from 'app/store'
 import { toastWarning } from 'common/helpers/toastHelper'
+import { Paging } from 'common/models'
 
-
-export interface Beers {
-  beers: Beer[];
-}
 
 interface BeerDetails {
   beer?: Beer;
-}
-
-export interface BeerFilters {
-  name?: string;
-  minAlcohol?: number;
-  maxAlcohol?: number;
-}
-
-export interface Paging {
-  pageSize: number;
-  pageNumber: number;
-  hasMore: boolean;
 }
 
 type BeersState = Beers &
@@ -120,32 +105,15 @@ export default beersSlice.reducer;
 // async actions
 export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
   async function fetchBeers(dispatch, getState) {
-    const {
-      filters: { name, minAlcohol, maxAlcohol },
-      paging: { pageSize, pageNumber },
-    } = getState().beers;
+    const { filters, paging } = getState().beers;
 
-    const query = buildQuery(
-      pageSize,
-      pageNumber,
-      name,
-      minAlcohol,
-      maxAlcohol
-    );
+    const { beers } = await getBeers(filters, paging, cancelToken);
 
-    const newBeers = await getBeers(query, cancelToken);
+    const hasMore = beers.length < paging.pageSize ? false : true;
 
-    const hasMore = newBeers.length < pageSize ? false : true;
+    dispatch(fetchBeersSuccess({ beers, hasMore }));
 
-    dispatch(
-      fetchBeersSuccess({
-        beers: newBeers,
-        hasMore,
-      })
-    );
-
-    !hasMore &&
-      newBeers.length === 0 &&
+    !hasMore && beers.length === 0 &&
       toastWarning("Sorry bro, no beer for you!");
   };
 
@@ -155,20 +123,3 @@ export const fetchBeer = (id: number): AppThunk =>
     dispatch(fetchBeerSuccess({ beer }));
   };
 
-// url query helper
-const buildQuery = (
-  pageSize: number,
-  pageNumber: number,
-  name: string | undefined,
-  minAlcohol: number | undefined,
-  maxAlcohol: number | undefined
-): string => {
-  const pagingQuery =
-    (pageSize ? `&per_page=${pageSize}` : "") +
-    (pageNumber ? `&page=${pageNumber}` : "");
-  const filterQuery =
-    (name ? `&beer_name=${name}` : "") +
-    (minAlcohol ? `&abv_gt=${minAlcohol}` : "") +
-    (maxAlcohol ? `&abv_lt=${maxAlcohol}` : "");
-  return pagingQuery + filterQuery;
-};
