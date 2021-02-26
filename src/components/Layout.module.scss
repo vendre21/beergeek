@@ -3,21 +3,20 @@
 .layout {
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
   text-align: center;
   min-height: calc(100vh - #{$header-height});
-}
 
-.page_container {
-  width: 80%;
-  margin-top: $header-height;
+  .page_container {
+    margin-top: calc(#{$header-height} + 2rem);
+  }
 }
 
 .header {
   position: fixed;
   top: 0;
+  z-index: 100;
   display: flex;
   width: 100%;
   min-height: $header-height;
@@ -41,56 +40,56 @@
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
-  }
-}
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  .username {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    margin-right: 20px;
-    opacity: 0.8;
-    cursor: default;
-  }
+      .username {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        margin-right: 20px;
+        opacity: 0.8;
+        cursor: default;
+      }
 
-  @media (max-width: 768px) {
-    .username {
-      display: none;
-    }
-  }
+      @media (max-width: 768px) {
+        .username {
+          display: none;
+        }
+      }
 
-  ul {
-    display: flex;
-    list-style: none;
+      ul {
+        display: flex;
+        list-style: none;
 
-    li {
-      display: inline-block;
-      margin-left: 15px;
-    }
+        li {
+          display: inline-block;
+          margin-left: 15px;
+        }
 
-    .logout_btn {
-      display: inline-block;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: rgba(255, 255, 255, 0.6);
-      padding: 10px 15px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: 1px solid rgba($primary-btn-color, 0);
-      border-radius: 5px;
-      cursor: pointer;
-      // background-color: rgba(255, 255, 255, 0.2);
-      transition: all 0.2s;
+        .logout_btn {
+          display: inline-block;
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: rgba(255, 255, 255, 0.6);
+          padding: 10px 15px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          border: 1px solid rgba($primary-btn-color, 0);
+          border-radius: 5px;
+          cursor: pointer;
+          // background-color: rgba(255, 255, 255, 0.2);
+          transition: all 0.2s;
 
-      &:hover {
-        // background-color: rgba(255, 255, 255, 0.2);
-        border: 1px solid $primary-btn-color;
-        color: rgba(255, 255, 255, 1);
+          &:hover {
+            // background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid $primary-btn-color;
+            color: rgba(255, 255, 255, 1);
+          }
+        }
       }
     }
   }

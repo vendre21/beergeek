@@ -32,11 +32,9 @@ export const BeerDetails = () => {
 
   return beer ? (
     <div className={styles.beer_detail}>
-      <img src={beer.image_url} alt={beer.name} />
-
       <div className={styles.beer_detail_info}>
         <h3>
-          {beer.name} - {beer.abv} %
+          {beer.name} - {beer.abv}%
         </h3>
         <p className={styles.beer_detail_desc}>{beer.description}</p>
         <p className={styles.beer_detail_tips}>
@@ -52,6 +50,8 @@ export const BeerDetails = () => {
         </div>
         <Link to="/beers">Back</Link>
       </div>
+
+      <img src={beer.image_url} alt={beer.name} />
     </div>
   ) : null;
 };

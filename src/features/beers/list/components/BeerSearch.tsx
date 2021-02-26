@@ -18,8 +18,6 @@ export const BeerSearch: FC = () => {
 
   return (
     <div className={styles.search_form}>
-      <div className={styles.search_paging}>Page: {pageNumber}</div>
-
       <button
         disabled={pageNumber === 1}
         className={styles.nav_btn}
@@ -70,6 +68,8 @@ export const BeerSearch: FC = () => {
       >
         Next
       </button>
+
+      <div className={styles.search_paging}>Page: {pageNumber}</div>
     </div>
   );
 };
