@@ -1,5 +1,11 @@
 @import "assets/scss/_variables";
 
+$card-img-height: 90;
+
+:export {
+  image_height: $card-img-height;
+}
+
 .beers {
   display: flex;
   flex-direction: column;
@@ -104,12 +110,20 @@
     animation: bouncedScale 1.3s linear infinite;
   }
 
-  img {
+  .card_no_image {
+    transform: scale(4);
+    padding-top: 10px;
+  }
+
+  .card_img {
     position: absolute;
     top: 15%;
     left: 50%;
     transform: translate(-50%, -15%);
-    height: 90px;
+  }
+
+  img {
+    height: #{$card-img-height}px;
     max-width: 100%;
   }
 

@@ -51,7 +51,7 @@ export const BeerDetails = () => {
         <Link to="/beers">Back</Link>
       </div>
 
-      <img src={beer.image_url} alt={beer.name} />
+      {beer.image_url && <img src={beer.image_url} alt={beer.name} />}
     </div>
   ) : null;
 };

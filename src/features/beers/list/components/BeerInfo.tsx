@@ -14,9 +14,18 @@ interface BeerCardProps {
 export const BeerInfo: FC<BeerCardProps> = ({ beer, onClick }) => {
   return (
     <div onClick={() => onClick(beer.id)} className={styles.card}>
-      <LazyLoad height={80}>
-        <img src={beer.image_url} alt={beer.name} />
+      <LazyLoad height={styles.image_height}>
+        <div className={styles.card_img}>
+          {!beer.image_url && (
+            <>
+              <p>No image</p>
+              <p className={styles.card_no_image}>🍺</p>
+            </>
+          )}
+          {beer.image_url && <img src={beer.image_url} alt={beer.name} />}
+        </div>
       </LazyLoad>
+
       <div className={styles.beer_info}>
         <p className={styles.beer_title}>{beer.name}</p>
         <p
