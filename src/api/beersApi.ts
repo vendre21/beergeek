@@ -1,6 +1,5 @@
-import axios, { AxiosResponse, CancelToken } from 'axios'
+import axios, { CancelToken } from 'axios'
 
-import { toastError } from 'common/helpers/toastHelper'
 import { Paging } from 'common/models';
 
 import { axiosErrorHandlingMiddleware, axiosSuccessHandlingMiddleware } from './middleware/axiosMiddlewares'
