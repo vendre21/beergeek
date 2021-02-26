@@ -113,7 +113,8 @@ export const fetchBeers = (cancelToken?: CancelToken): AppThunk =>
 
     dispatch(fetchBeersSuccess({ beers, hasMore }));
 
-    !hasMore && beers.length === 0 &&
+    !hasMore &&
+      beers.length === 0 &&
       toastWarning("Sorry bro, no beer for you!");
   };
 
@@ -122,4 +123,3 @@ export const fetchBeer = (id: number): AppThunk =>
     const beer = await getBeer(id);
     dispatch(fetchBeerSuccess({ beer }));
   };
-

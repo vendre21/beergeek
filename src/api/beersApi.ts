@@ -1,8 +1,9 @@
 import axios, { CancelToken } from 'axios'
+import {
+    axiosErrorHandlingMiddleware, axiosSuccessHandlingMiddleware
+} from './middleware/axiosMiddlewares'
 
-import { Paging } from 'common/models';
-
-import { axiosErrorHandlingMiddleware, axiosSuccessHandlingMiddleware } from './middleware/axiosMiddlewares'
+import { Paging } from 'common/models'
 
 
 export interface Beer {
@@ -25,22 +26,23 @@ export interface BeerFilters {
   maxAlcohol?: number;
 }
 
-
 const url = `https://api.punkapi.com/v2`;
 
 const beersApi = axios.create({
   baseURL: url,
 });
 
-beersApi.interceptors.response
-  .use(axiosSuccessHandlingMiddleware, axiosErrorHandlingMiddleware);
+beersApi.interceptors.response.use(
+  axiosSuccessHandlingMiddleware,
+  axiosErrorHandlingMiddleware
+);
 
 export const getBeers = async (
   filters: BeerFilters,
   paging: Paging,
   cancelToken?: CancelToken
 ): Promise<Beers> => {
-  const { name, minAlcohol, maxAlcohol } = filters
+  const { name, minAlcohol, maxAlcohol } = filters;
   const { pageSize, pageNumber } = paging;
 
   const params = buildQueryParams(
@@ -63,7 +65,6 @@ export const getBeer = async (id: number): Promise<Beer | undefined> => {
   return response?.data?.length === 1 ? response.data[0] : undefined;
 };
 
-
 // url query helper
 const buildQueryParams = (
   pageSize: number,
@@ -73,8 +74,8 @@ const buildQueryParams = (
   maxAlcohol: number | undefined
 ): URLSearchParams => {
   var params = new URLSearchParams({
-    "per_page": String(pageSize),
-    "page": String(pageNumber)
+    per_page: String(pageSize),
+    page: String(pageNumber),
   });
 
   name && params.append("beer_name", name);
