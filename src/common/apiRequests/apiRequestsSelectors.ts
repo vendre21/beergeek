@@ -20,7 +20,7 @@ export const selectApiRequestsState = createSelector<
   ApiRequestState[]
 >(selectApiRequests, ({ requestsStates: loadingStates }) => loadingStates);
 
-const getByActionName = (_: any, name: string) => name;
+const getByActionName = (_: any, name: string | string[]) => name;
 
 export const selectErrorByActionName = createSelector(
   selectErrors,
@@ -34,6 +34,7 @@ export const selectApiRequestStateByActionName = createSelector(
   selectApiRequestsState,
   getByActionName,
   (loadingStates, name) => {
-    return loadingStates.find((x) => x.action === name);
+    const actions = Array.isArray(name) ? name : [name];
+    return loadingStates?.filter((x) => actions.includes(x.action)) ?? [];
   }
 );

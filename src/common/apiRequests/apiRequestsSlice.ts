@@ -61,11 +61,17 @@ const apiRequestsSlice = createSlice({
         (x) => x.action !== payload.actionName
       );
     },
-    clearErrors(state) {
+    reset(state) {
       state.errors = [];
+      state.requestsStates = [];
     },
   },
 });
 
-export const { setLoading, addError, removeError } = apiRequestsSlice.actions;
+export const {
+  setLoading,
+  addError,
+  removeError,
+  reset: resetApiRequests,
+} = apiRequestsSlice.actions;
 export default apiRequestsSlice.reducer;

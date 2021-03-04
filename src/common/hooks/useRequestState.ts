@@ -4,10 +4,10 @@ import { RootState } from 'app/store'
 import { selectApiRequestStateByActionName } from 'common/apiRequests/apiRequestsSelectors'
 
 
-export const useRequestState = (actionName: string): boolean => {
-  const actionState = useSelector((state: RootState) =>
+export const useRequestState = (actionName: string | string[]): boolean => {
+  const actionStates = useSelector((state: RootState) =>
     selectApiRequestStateByActionName(state, actionName)
   );
 
-  return actionState?.loading ?? false;
+  return actionStates.some((x) => x.loading === true) ?? false;
 };

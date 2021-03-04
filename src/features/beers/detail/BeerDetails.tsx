@@ -22,7 +22,9 @@ export const BeerDetails = () => {
 
   useEffect(() => {
     dispatch(fetchBeer(+id));
+  }, [dispatch, id]);
 
+  useEffect(() => {
     return () => {
       dispatch(resetBeer());
     };

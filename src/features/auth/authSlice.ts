@@ -3,8 +3,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { authenticate } from 'api/authApi'
 
 import { AppThunk, RootState } from 'app/store'
-import { addError, removeError } from 'common/apiRequests/apiRequestsSlice'
+import { addError, resetApiRequests } from 'common/apiRequests/apiRequestsSlice'
 import { getToken, setToken } from 'common/helpers/sessionHelpers'
+import { toastHideAll } from 'common/helpers/toastHelper'
 
 import { resetBeers } from 'features/beers/beersSlice'
 
@@ -72,10 +73,7 @@ export const logout = (): AppThunk =>
   async function logout(dispatch) {
     dispatch(logoutSuccess());
     // cleanup
+    toastHideAll();
     dispatch(resetBeers());
-    dispatch(
-      removeError({
-        actionName: login.name,
-      })
-    );
+    dispatch(resetApiRequests());
   };
